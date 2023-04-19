@@ -17,12 +17,12 @@
     <title>Conf Bs As - Codo a Codo</title>
 </head>
 <body>
-    <header>
+    <header class="mb-5">
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container">
                 <a class="navbar-brand" href="#">
                     <img class="logo" src="./img/codoacodo.png" alt="">
-                    <span>
+                    <span class="">
                         Conf Bs As
                     </span>
                     
@@ -36,9 +36,6 @@
                             <a class="nav-link active" aria-current="page" href="#">La conferencia</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">La conferencia</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">Los oradores</a>
                         </li>
                         <li class="nav-item">
@@ -48,7 +45,7 @@
                             <a class="nav-link" href="#">Conviértete en orador</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-success" href="#">Comprar tickets</a>
+                            <a class="nav-link text-success fw-bold" href="#">Comprar tickets</a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +53,7 @@
         </nav>
         <div class="container">
             <div class="heroText d-flex flex-column justify-content-end">
-                <h1>Conf Bs As </h1>
+                <h1 class="fs-1 fw-bold">Conf Bs As </h1>
                 <p class="text-white text-end">
                     Bs As llega por primera vez a Argentina. Un evento para compartir con nuestra comunidad el conocimiento y experiencia de los expertos que están creando el futuro de Internet. Ven a conocer a miembros del evento, a otros estudiantes de Codo a codo y los oradores de primer nivel que tenemos para ti. ¡Te esperamos!
                 </p>
@@ -68,13 +65,11 @@
             </div>
         </div>
     </header>
-    <section>
+    <section class="mb-5">
         <div class="container">
-            <div class="row">
-                CONOCE A LOS 
-            </div>
-            <div class="row">
-                ORADORES
+            <div class="row text-center pb-3">
+                <span>Conoce a los oradores</span>
+                <h2 class="fs-1">ORADORES</h2>
             </div>
             <div class="row align-content-center">
                 <div class="col-md-4 mb-3">
@@ -109,19 +104,16 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
             </div>
         </div>
     </section>
-    <section class="lugar">
+    <section class="lugar mb-5">
             <div class="">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img class="img-fluid" src="./img/honolulu.jpg" alt="">
+                        <img class="img-fluid" src="./img/ba_as.jpg" alt="">
                     </div>
-                    <div class="col-lg-6 bg-danger p-5">
+                    <div class="col-lg-6 p-5 textoLugar">
                         <h3 class="text-white">
                             Bs As - Octubre
                         </h3>
@@ -133,41 +125,40 @@
                 </div>
             </div>
     </section>
-    <section>
+    <section class="mb-5" name="oradorForm">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3>Conocé más</h3>
-                    <h2>CONVIÉRTETE EN UN ORADOR</h2>
+            <div class="row text-center">
+                    <span>CONVIÉRTETE EN UN</span>
+                    <h2 class="fs-1">ORADOR</h2>
                     <p>
                         Anótate como orador para dar una charla ignite. ¡Cuétanos de qué quieres hablar!
                     </p> 
-                </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <input type="text" placeholder="Nombre"> 
-                    <input type="text" placeholder="Apellido"> 
-                </div>
+            <div>
+                <form class="row justify-content-center text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="inputNombre" placeholder="Nombre">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
+                        </div>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <textarea class="form-control" id="textArea" rows="3" placeholder="¿Sobre qué quieres hablar?"></textarea>
+                        <div id="textAreaHelp" class="form-text mb-3">Recuerda incluir un título para tu charla.</div>
+                        <button class="btn btn-success">Enviar</button>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="¿Sobre qué quieres hablar?"></textarea>
-                </div>
-            </div>
-            <p>
-                Recuerda incluir un título para tu charla
-            </p>
-
-            <button>Enviar</button>
-
-            
         </div>
-
     </section>
+    
     <footer class="bg-dark py-5">
         <div class="container">
-            <ul>
+            <ul class="d-flex flex-column flex-lg-row">
                 <li>
                     <a href="#">Preguntas frecuentes</a>
                 </li>
@@ -192,18 +183,6 @@
             </ul>
         </div>
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- JS BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

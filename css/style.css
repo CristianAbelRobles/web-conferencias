@@ -6,28 +6,46 @@
     box-sizing: border-box;
 }
 
+.nav-link:hover {
+    color:#ffc900;
+}
+
 header {
     background-image: url(../img/ba1.jpg);
     background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
     height: 100vh;
     position: relative;
 }
 
 .heroText {
+    right: 8%;
     position: absolute;
+    top: 50%;
     width: 50%;
     align-items: end;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .logo {
     height: 5rem;
 }
 
+.textoLugar {
+    background-color: #353a40;
+}
+
 h1 {
     font-weight: 600;
     color: aliceblue;
+}
+
+input {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
 }
 
 footer {
@@ -39,6 +57,8 @@ footer ul {
     display: flex;
     justify-content: space-between;
     list-style: none;
+    padding: 0px;
+    margin-bottom: 1rem;
 }
 
 footer ul li a {
@@ -46,6 +66,50 @@ footer ul li a {
     color: aliceblue;
 }
 
+
+
+footer ul li a:hover {
+    color: #ffc900;
+}
+
 .lugar .row {
     --bs-gutter-x: 0rem;
+}
+
+/* MEDIAQUERIES LG */
+
+@media (max-width: 992px){
+
+}
+
+/* MEDIAQUERIES MD */
+
+@media (max-width: 768px){
+
+    .heroText {
+        width: 75%;
+    }
+
+}
+
+/* MEDIAQUERIES SM */
+
+@media (max-width: 576px)  { 
+
+    footer ul {
+        flex-direction: column;
+    }
+    
+    footer ul li {
+        margin-bottom: 2rem;
+    }
+}
+
+header {
+    background-image: url(../img/ba1.jpg);
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    height: 100vh;
+    position: relative;
 }
