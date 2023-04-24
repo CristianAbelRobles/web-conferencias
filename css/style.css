@@ -7,13 +7,13 @@
 }
 
 :root {
-    /* colores */
-    --amarillo: #ffc900;
-    --gris: #353a40;
+    /* colors */
+    --yellow: #ffc900;
+    --grey: #353a40;
 }
 
 .nav-link:hover {
-    color:var(--amarillo);
+    color:var(--yellow);
 }
 
 header {
@@ -25,16 +25,16 @@ header {
     position: relative;
 }
 
+.logo {
+    height: 5rem;
+}
+
 .heroText {
     right: 8%;
     position: absolute;
     top: 50%;
     width: 50%;
     align-items: end;
-}
-
-.logo {
-    height: 5rem;
 }
 
 .textoLugar {
@@ -73,7 +73,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-    color:var(--amarillo);
+    color:var(--yellow);
 }
 
 .lugar .row {
@@ -86,46 +86,68 @@ footer ul li a:hover {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 201, 0, 255%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+.buyTickets {
+    color: var(--yellow);
+}
+
 .buyTickets:hover {
     cursor: pointer;
     transform: skewX(-10deg);
-    background-color: var(--amarillo);
-    color: var(--gris) !important;
+    background-color: var(--yellow);
+    color: var(--grey) !important;
     transition: all 0.5s;
 }
 
 .btn {
     transform: skewX(-10deg);
     border-radius: 0;
-    color: var(--amarillo);
+    color: var(--yellow);
 }
 
-.btn-success {
+.btn-yellow {
     font-weight: 600;
     background-color: transparent;
-    border: 2px solid var(--amarillo);
+    border: 2px solid var(--yellow);
 }
 
-.btn-success:hover {
-    background-color: var(--amarillo);
-    border: 2px solid var(--amarillo);
-    color: var(--gris);
+.btn-yellow:hover {
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
+    color: var(--grey);
     transition: all 0.5s;
 }
 
-.text-success {
-    color: var(--amarillo) !important;
+.btn-white {
+    font-weight: 600;
+    color: white;
+    border: 2px solid white;
+    transform: skewX(-10deg);
+}
+
+.btn-white:hover {
+    background-color: white;
+    color: var(--grey);
+    transition: all .3s ease-in-out;
+}
+
+
+.text-yellow {
+    color: var(--yellow) !important;
 }
 
 .card {
     border-radius: 0;
     overflow: hidden;
-    background-color: var(--amarillo);
-    border: 2px solid var(--amarillo)
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow)
 }
 
 .card:hover {
-    transition: all 0.3s;
+    transition: all .3s ease-in-out;
+}
+
+.img-card-conteiner {
+    overflow: hidden;
 }
 
 .card img {
@@ -142,29 +164,14 @@ footer ul li a:hover {
     border: 1px solid black;
 }
 
-.cajaCac {
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
-    background-color: var(--amarillo);
+.boxYellow {
+    background-color: var(--yellow);
     transform: skewX(-12deg);
     font-size: 2rem;
     font-weight: 600;
-    justify-content: center;
-    width: 23rem;
-
-}
-
-.cajaCac .caja1 {
-    width: 24rem;
-    background-color: var(--amarillo);
-    color: var(--gris);
-    font-size: 2rem;
+    width: 32rem;
+    padding: 1rem;
     text-align: center;
-}
-
-.cajaCac .caja2 {
-    font-size: 4rem;
 }
 
 /* MEDIAQUERIES LG */
@@ -196,11 +203,3 @@ footer ul li a:hover {
     }
 }
 
-header {
-    background-image: url(../img/ba1.jpg);
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-blend-mode: multiply;
-    height: 100vh;
-    position: relative;
-}
