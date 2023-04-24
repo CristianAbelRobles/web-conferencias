@@ -194,6 +194,10 @@ footer ul li a:hover {
 
 @media (max-width: 576px)  { 
 
+    .boxYellow {
+        width: 90%;
+    }
+
     footer ul {
         flex-direction: column;
     }
