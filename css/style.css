@@ -35,8 +35,16 @@ img , picture , video , iframe , figure {
     color: var(--yellow);
 }
 
+.nav-link {
+    font-size: .9rem;
+}
+
 .nav-link:hover {
     color:var(--yellow);
+}
+
+.active {
+    border-bottom: 2px solid #ffc900;
 }
 
 .logo {
@@ -48,7 +56,7 @@ img , picture , video , iframe , figure {
     width: 8rem;
 }
 
-header {
+.section__conferencia {
     background-image: url(../img/ba1.jpg);
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
@@ -60,7 +68,7 @@ header {
 .heroText {
     right: 8%;
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: 50%;
     align-items: end;
 }
@@ -134,10 +142,22 @@ footer ul li a:hover {
 
 .btn-yellow {
     font-weight: 600;
-    border: 2px solid var(--yellow);
+    color: var(--grey);
+    background-color: var(--yellow);
 }
 
 .btn-yellow:hover {
+    background-color: white;
+    color: var(--grey);
+    transition: all 0.5s;
+}
+
+.btn-yellow-outline {
+    font-weight: 600;
+    border: 2px solid var(--yellow);
+}
+
+.btn-yellow-outline:hover {
     background-color: var(--yellow);
     border: 2px solid var(--yellow);
     color: var(--grey);
@@ -268,7 +288,7 @@ footer ul li a:hover {
     border: 1px solid black;
 }
 
-.boxYellow {
+.box-yellow {
     background-color: var(--yellow);
     transform: skewX(-12deg);
     font-size: 2rem;

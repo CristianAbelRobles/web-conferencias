@@ -23,15 +23,14 @@
     <title>Conf Bs As - Codo a Codo</title>
 </head>
 <body>
-    <header class="mb-5">
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container-fluid">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-dark" id="navbar-scrollSpy" data-bs-theme="dark">
+            <div class="container">
                 <a class="navbar-brand" href="#">
                     <img class="logo" src="./img/codoacodo.png" alt="Logo codo a codo">
                     <span class="">
                         Conf Bs As
                     </span>
-                    
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +38,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">La conferencia</a>
+                            <a class="nav-link active" aria-current="page" href="#conferencia">La conferencia</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#oradores"><i class="bi bi-people-fill"></i> Los oradores</a>
@@ -57,26 +56,25 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <div class="heroText d-flex flex-column justify-content-end">
-                <h1 class="fs-1 fw-bold">Conf Bs As </h1>
-                <p class="text-white text-end mb-3">
-                    Bs As llega por primera vez a Argentina. Un evento para compartir con nuestra comunidad el conocimiento y experiencia de los expertos que están creando el futuro de Internet. Ven a conocer a miembros del evento, a otros estudiantes de Codo a codo y los oradores de primer nivel que tenemos para ti. ¡Te esperamos!
-                </p>
-                <div class="d-flex flex-column flex-md-row">
-                    <a href="#inscripcion" class="btn btn-white mb-3">QUIERO SER ORADOR</a>
-                    <a href="" class="btn btn-yellow mb-3 mx-2" data-bs-toggle="modal" data-bs-target="#buyTickesModal">COMPRAR TICKETS</a>
-                </div>
-                
-            </div>
-        </div>
     </header>
-    <main>
-        <section class="mb-5">
-            <a name="oradores"></a>
+    <main data-bs-spy="scroll" data-bs-target="#navbar-scrollSpy" data-bs-smooth-scroll="true" tabindex="0">
+        <section class="section__conferencia mb-5" id="conferencia">
+                <div class="heroText d-flex flex-column justify-content-end">
+                    <h1 class="fs-1 fw-bold">Conf Bs As </h1>
+                    <p class="text-white text-end mb-3">
+                        Bs As llega por primera vez a Argentina. Un evento para compartir con nuestra comunidad el conocimiento y experiencia de los expertos que están creando el futuro de Internet. Ven a conocer a miembros del evento, a otros estudiantes de Codo a codo y los oradores de primer nivel que tenemos para ti. ¡Te esperamos!
+                    </p>
+                    <div class="d-flex flex-column flex-md-row">
+                        <a href="#inscripcionForm" class="btn btn-white mb-3">QUIERO SER ORADOR</a>
+                        <a href="" class="btn btn-yellow mb-3 mx-2" data-bs-toggle="modal" data-bs-target="#buyTickesModal">COMPRAR TICKETS</a>
+                    </div>
+                    
+                </div>
+        </section>
+        <section class="mb-5" id="oradores">
             <div class="container">
                 <div class="row justify-content-center mb-5">
-                        <div class="boxYellow mb-3">
+                        <div class="box-yellow mb-3">
                             <h2 class="align-text-top">CONOCÉ A LOS ORADORES</h2>
                         </div>
                 </div>
@@ -130,32 +128,29 @@
                 </div>
             </div>
         </section>
-        <section class="lugar mb-5">
-            <a name="lugar"></a>
-                <div class="">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <img class="img-fluid h-100" src="./img/ba_as.jpg" alt="fotografia de la ciudad de buenos aires">
-                        </div>
-                        <div class="col-lg-6 p-5 textoLugar">
-                            <h3 class="text-white">
-                                Bs As - Octubre
-                            </h3>
-                            <p class="text-white">
-                                Buenos Aires es la capital y ciudad más poblada de la República Argentina. Sus nombres oficiales son Ciudad de Buenos Aires o Ciudad Autónoma de Buenos Aires (CABA). También es llamada Capital Federal, por ser la sede del gobierno nacional.​
-                            </p>
-                            <a href="https://es.wikipedia.org/wiki/Argentina" class="btn btn-white mb-5">CONOCE MÁS</a>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d210147.47497635568!2d-58.59811247428063!3d-34.61543034590001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20CABA!5e0!3m2!1ses!2sar!4v1682359009024!5m2!1ses!2sar" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
+        <section class="lugar mb-5" id="lugar">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img class="img-fluid h-100" src="./img/ba_as.jpg" alt="fotografia de la ciudad de buenos aires">
                 </div>
+                <div class="col-lg-6 p-5 textoLugar">
+                    <h3 class="text-white">
+                        Bs As - Octubre
+                    </h3>
+                    <p class="text-white">
+                        Buenos Aires es la capital y ciudad más poblada de la República Argentina. Sus nombres oficiales son Ciudad de Buenos Aires o Ciudad Autónoma de Buenos Aires (CABA). También es llamada Capital Federal, por ser la sede del gobierno nacional.​
+                    </p>
+                    <a href="https://es.wikipedia.org/wiki/Argentina" class="btn btn-white mb-5">CONOCE MÁS</a>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d210147.47497635568!2d-58.59811247428063!3d-34.61543034590001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20CABA!5e0!3m2!1ses!2sar!4v1682359009024!5m2!1ses!2sar" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <a name="inscripcionForm"></a>
         </section>
-    
-        <section class="mb-5" >
-            <a name="inscripcion"></a>
+        <section class="mb-5" id="inscripcion">
+            
             <div class="container">
                 <div class="row justify-content-center mb-2">
-                    <div class="boxYellow mb-3">
+                    <div class="box-yellow mb-3">
                         <h2 class="align-text-top">CONVIÉRTETE EN UN ORADOR</h2>
                     </div>
                     <p class="text-center">
@@ -178,13 +173,41 @@
                             <textarea class="form-control" id="textArea" rows="3" placeholder="¿Sobre qué quieres hablar?"></textarea>
                             <div id="textAreaHelp" class="form-text mb-3">Recuerda incluir un título para tu charla.</div>
                             
-                            <button type="button" class="btn btn-yellow" id="oradorToastBtn">ENVIAR  </button>
+                            <button type="button" class="btn btn-yellow-outline" id="oradorToastBtn">ENVIAR  </button>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <ul class="d-flex flex-column flex-lg-row">
+                <li>
+                    <a href="./404.html">Preguntas frecuentes</a>
+                </li>
+                <li>
+                    <a href="./404.html">Contáctanos</a>
+                </li>
+                <li>
+                    <a href="./404.html">Prensa</a>
+                </li>
+                <li>
+                    <a href="./404.html">Conferencia</a>
+                </li>
+                <li>
+                    <a href="./404.html">Términos y condiciones</a>
+                </li>
+                <li>
+                    <a href="./404.html">Privacidad</a>
+                </li>
+                <li>
+                    <a href="./404.html">Estudiantes</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 
     <!-- BOTON GO TOP -->
     <div class="go-top-container">
@@ -236,49 +259,20 @@
         </div>
     </div>
 
-        <!-- TOAST ORADORES FORM -->
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="oradorToast" class="toast text-bg-warning" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <i class="bi bi-emoji-smile mx-1"></i> <strong class="me-auto">Gracias por Inscribirse!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Enviaremos un correo con la información para su acreditación.
-                </div>
+    <!-- TOAST ORADORES FORM -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="oradorToast" class="toast text-bg-warning" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="bi bi-emoji-smile mx-1"></i> <strong class="me-auto">Gracias por Inscribirse!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Enviaremos un correo con la información para su acreditación.
             </div>
         </div>
+    </div>
 
-
-    <footer class="bg-dark py-5">
-        <div class="container">
-            <ul class="d-flex flex-column flex-lg-row">
-                <li>
-                    <a href="./404.html">Preguntas frecuentes</a>
-                </li>
-                <li>
-                    <a href="./404.html">Contáctanos</a>
-                </li>
-                <li>
-                    <a href="./404.html">Prensa</a>
-                </li>
-                <li>
-                    <a href="./404.html">Conferencia</a>
-                </li>
-                <li>
-                    <a href="./404.html">Términos y condiciones</a>
-                </li>
-                <li>
-                    <a href="./404.html">Privacidad</a>
-                </li>
-                <li>
-                    <a href="./404.html">Estudiantes</a>
-                </li>
-            </ul>
-        </div>
-    </footer>
-
-    <!-- ANIMACION AOS-->
+    <!-- ANIMACION AOS -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
