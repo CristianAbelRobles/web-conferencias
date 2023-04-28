@@ -44,7 +44,7 @@ img , picture , video , iframe , figure {
 }
 
 .active {
-    border-bottom: 2px solid #ffc900;
+    border-bottom: 2px solid var(--yellow);
 }
 
 .logo {
@@ -61,25 +61,25 @@ img , picture , video , iframe , figure {
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
-    height: 100vh;
-    position: relative;
+    height: 90vh;
+}
+
+.section__conferencia-caja {
+    height: 80%;
 }
 
 .heroText {
-    right: 8%;
-    position: absolute;
-    top: 40%;
+    height: 70%;
     width: 50%;
-    align-items: end;
-}
-
-.textoLugar {
-    background-color: #353a40;
 }
 
 .heroText h1 {
     font-weight: 600;
     color: white;
+}
+
+.textoLugar {
+    background-color: #353a40;
 }
 
 input {
@@ -128,7 +128,7 @@ footer ul li a:hover {
 
 .buyTickets:hover {
     cursor: pointer;
-    transform: skewX(-10deg);
+    height: 2.5rem;
     background-color: var(--yellow);
     color: var(--grey) !important;
     transition: all 0.5s;
@@ -263,10 +263,12 @@ footer ul li a:hover {
     border-radius: 0;
     overflow: hidden;
     background-color: var(--yellow);
-    border: 2px solid var(--yellow)
+    border: 2px solid var(--yellow);
+    
 }
 
 .card:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: .3s ease-in-out;
 }
 
@@ -305,6 +307,23 @@ footer ul li a:hover {
     color: var(--yellow);
 }
 
+/* MEDIAQUERIES XL */
+
+@media (max-width: ≥1400px){
+    .heroText {
+        right: 8%;
+    }
+}
+
+
+/* MEDIAQUERIES XL */
+
+@media (max-width: ≥1400px){
+    .heroText {
+        width: 75%;
+    }
+}
+
 /* MEDIAQUERIES LG */
 
 @media (max-width: 992px){
@@ -324,10 +343,6 @@ footer ul li a:hover {
 /* MEDIAQUERIES SM */
 
 @media (max-width: 576px)  { 
-
-    .boxYellow {
-        width: 90%;
-    }
 
     footer ul {
         flex-direction: column;
