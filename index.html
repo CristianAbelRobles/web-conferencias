@@ -22,21 +22,17 @@
 
     <title>Conf Bs As - Codo a Codo</title>
 </head>
-<body>
-    <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg bg-dark" id="navbar-scrollSpy" data-bs-theme="dark">
+<body data-bs-spy="scroll" data-bs-target="#navbar-scrollSpy" data-bs-smooth-scroll="true" tabindex="0">
+    <header class="mb-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar-scrollSpy" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img class="logo" src="./img/codoacodo.png" alt="Logo codo a codo">
-                    <span class="">
-                        Conf Bs As
-                    </span>
-                </a>
+                <a class="navbar-brand" href="./index.html"><img src="./img/codoacodo.png" width="140" height="80" alt="Conf Bs As"></a>
+                <a class="navbar-brand" href="./index.html">Conf Bs As</a>                         
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav text-center">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#conferencia">La conferencia</a>
                         </li>
@@ -56,29 +52,30 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <main data-bs-spy="scroll" data-bs-target="#navbar-scrollSpy" data-bs-smooth-scroll="true" tabindex="0">
-        <section class="section__conferencia mb-5" id="conferencia">
-            <div class="container section__conferencia-caja d-flex justify-content-center justify-content-md-end">
-                <div class="heroText d-flex align-items-center align-items-md-end flex-column justify-content-end align-self-end">
-                    <h1 class="fs-1 fw-bold">Conf Bs As </h1>
-                    <p class="text-white text-center text-md-end mb-5 mb-md-3">
-                        Bs As llega por primera vez a Argentina. Un evento para compartir con nuestra comunidad el conocimiento y experiencia de los expertos que están creando el futuro de Internet. Ven a conocer a miembros del evento, a otros estudiantes de Codo a codo y los oradores de primer nivel que tenemos para ti. ¡Te esperamos!
-                    </p>
-                    <div class="d-flex flex-column flex-lg-row">
-                        <a href="#inscripcionForm" class="btn btn-white mb-3">QUIERO SER ORADOR</a>
-                        <a href="" class="btn btn-yellow mb-3 mx-2" data-bs-toggle="modal" data-bs-target="#buyTickesModal">COMPRAR TICKETS</a>
+        <div class="section__conferencia" id="conferencia">
+            <div class="container">
+                <div class="section__conferencia-caja d-flex justify-content-center justify-content-md-end">
+                    <div class="heroText d-flex align-items-center align-items-md-end flex-column justify-content-end align-self-end">
+                        <h1 class="fs-1 fw-bold">Conf Bs As </h1>
+                        <p class="text-white text-center text-md-end mb-5 mb-md-3">
+                            Bs As llega por primera vez a Argentina. Un evento para compartir con nuestra comunidad el conocimiento y experiencia de los expertos que están creando el futuro de Internet. Ven a conocer a miembros del evento, a otros estudiantes de Codo a codo y los oradores de primer nivel que tenemos para ti. ¡Te esperamos!
+                        </p>
+                        <div class="d-flex flex-column flex-lg-row">
+                            <a href="#inscripcionForm" class="btn btn-white mb-3">QUIERO SER ORADOR</a>
+                            <a href="" class="btn btn-yellow mb-3 mx-2" data-bs-toggle="modal" data-bs-target="#buyTickesModal">COMPRAR TICKETS</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-
+        </div>
+    </header>
+    <main>
         <section class="mb-5" id="oradores">
             <div class="container">
                 <div class="row justify-content-center mb-5">
-                        <div class="box-yellow mb-3">
-                            <h2 class="align-text-top">CONOCÉ A LOS ORADORES</h2>
-                        </div>
+                    <div class="box-yellow mb-3">
+                        <h2 class="align-text-top">CONOCÉ A LOS ORADORES</h2>
+                    </div>
                 </div>
                 <div class="row align-content-center">
                     <div class="col-md-4 mb-3">
@@ -121,7 +118,6 @@
                                     <span class="badge text-bg-secondary">Negocios</span>
                                     <span class="badge text-bg-danger">Startups</span>
                                 </div>
-                                
                                 <h5 class="card-title">Ada Lovelace</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
@@ -149,7 +145,6 @@
             <a name="inscripcionForm"></a>
         </section>
         <section class="mb-5" id="inscripcion">
-            
             <div class="container">
                 <div class="row justify-content-center mb-2">
                     <div class="box-yellow mb-3">
@@ -220,7 +215,7 @@
 
     <!-- MODAL COMPRA ENTRADAS -->
     <div class="modal fade" id="buyTickesModal" tabindex="-1" aria-labelledby="buyTickesModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                 <h1 class="modal-title fs-5" id="buyTickesModalLabel">Estimado/a usuario</h1>
@@ -275,7 +270,6 @@
     </div>
 
     <!-- ANIMACION AOS -->
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
