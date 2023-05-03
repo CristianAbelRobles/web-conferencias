@@ -35,6 +35,15 @@ img , picture , video , iframe , figure {
     color: var(--yellow);
 }
 
+.logo {
+    display: inline;
+    width: 8rem;
+}
+
+.logo img{
+    width: 8rem;
+}
+
 .nav-link {
     font-size: .9rem;
 }
@@ -45,15 +54,6 @@ img , picture , video , iframe , figure {
 
 .active {
     border-bottom: 2px solid var(--yellow);
-}
-
-.logo {
-    display: inline;
-    width: 8rem;
-}
-
-.logo img{
-    width: 8rem;
 }
 
 .section__conferencia {
@@ -69,6 +69,8 @@ img , picture , video , iframe , figure {
 }
 
 .heroText {
+    position: absolute;
+    bottom: 2rem;
     height: 70%;
     width: 50%;
 }
@@ -76,6 +78,10 @@ img , picture , video , iframe , figure {
 .heroText h1 {
     font-weight: 600;
     color: white;
+}
+
+.lugar .row {
+    --bs-gutter-x: 0rem;
 }
 
 .textoLugar {
@@ -112,13 +118,10 @@ footer ul li a:hover {
     text-decoration-line: underline;
 }
 
-.lugar .row {
-    --bs-gutter-x: 0rem;
-}
-
 /* PRUEBAS CAMBIO DE ESTILOS */
 
 .navbar-toggler-icon {
+    /* CAMBIO DE COLOR MENU HAMBURGUESA */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 201, 0, 255%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
@@ -147,8 +150,8 @@ footer ul li a:hover {
 }
 
 .btn-yellow:hover {
-    background-color: white;
-    color: var(--grey);
+    background-color: var(--yellow);
+    box-shadow: 1px 1px 25px -2px var(--yellow);
     transition: all 0.5s;
 }
 
@@ -177,19 +180,66 @@ footer ul li a:hover {
     transition: .3s ease-in-out;
 }
 
+.text-yellow {
+    color: var(--yellow) !important;
+}
+
+.card {
+    border-radius: 0;
+    overflow: hidden;
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
+}
+
+.card:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .3s ease-in-out;
+}
+
+.img-card-conteiner {
+    overflow: hidden;
+}
+
+.card img {
+    border-radius: 0;
+	transform: scale(1);
+	transition: all 0.3s ease-in-out;
+}
+
+.card img:hover {
+	transform: scale(1.04);
+}
+
+.badge {
+    border: 1px solid black;
+}
+
+.box-yellow {
+    background-color: var(--yellow);
+    transform: skewX(-12deg);
+    font-size: 2rem;
+    font-weight: 600;
+    width: 32rem;
+    padding: 1rem;
+    text-align: center;
+}
+
 /* MODAL */
 
-.modal-content {
-    border-radius: 0;
+.modal-header {
     background-color: var(--yellow);
+}
+
+.modal-body {
+    font-size: .8rem;
 }
 
 /* BUTTOM GO TOP */
 
 .go-top-container {
     position: fixed;
-    bottom: 3rem;
-    right: 0rem;
+    bottom: 2rem;
+    right: -3rem;
     width: 6rem;
     height: 6rem;
     z-index: -1;
@@ -253,53 +303,6 @@ footer ul li a:hover {
     }
 }
 
-/********************/
-
-.text-yellow {
-    color: var(--yellow) !important;
-}
-
-.card {
-    border-radius: 0;
-    overflow: hidden;
-    background-color: var(--yellow);
-    border: 2px solid var(--yellow);
-    
-}
-
-.card:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: .3s ease-in-out;
-}
-
-.img-card-conteiner {
-    overflow: hidden;
-}
-
-.card img {
-    border-radius: 0;
-	transform: scale(1);
-	transition: all 0.3s ease-in-out;
-}
-
-.card img:hover {
-	transform: scale(1.04);
-}
-
-.badge {
-    border: 1px solid black;
-}
-
-.box-yellow {
-    background-color: var(--yellow);
-    transform: skewX(-12deg);
-    font-size: 2rem;
-    font-weight: 600;
-    width: 32rem;
-    padding: 1rem;
-    text-align: center;
-}
-
 /* PAGINA ERROR 404 */
 
 .errorIcon {
@@ -307,13 +310,6 @@ footer ul li a:hover {
     color: var(--yellow);
 }
 
-/* MEDIAQUERIES XL */
-
-@media (max-width: ≥1400px){
-    .heroText {
-        right: 8%;
-    }
-}
 
 
 /* MEDIAQUERIES XL */
@@ -340,6 +336,7 @@ footer ul li a:hover {
 @media (max-width: 768px){
 
     .heroText {
+        bottom: 6rem;
         width: 75%;
     }
 
