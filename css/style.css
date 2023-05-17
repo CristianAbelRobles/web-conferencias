@@ -191,11 +191,6 @@ footer ul li a:hover {
     transition: .3s ease-in-out;
 }
 
-.card-yellow {
-    background-color: var(--yellow);
-    border: 2px solid var(--yellow);
-}
-
 .img-card-conteiner {
     overflow: hidden;
 }
@@ -208,6 +203,20 @@ footer ul li a:hover {
 
 .card img:hover {
 	transform: scale(1.04);
+}
+
+.card-yellow {
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
+}
+
+.card-grey {
+    background-color: var(--grey);
+    border: 2px solid var(--grey);
+}
+
+.card__grey-outline {
+    border: 2px solid var(--grey);
 }
 
 .badge {
