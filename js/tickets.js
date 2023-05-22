@@ -81,19 +81,19 @@ const validarCantidad = () =>  {
 
 const mostrarTotal = () => {
     switch (buyCategory.value) {
-        case "1":
+        case "General":
             //general 200 sin descuento
             totalCost = buyAmount.value*200
             break;
-        case "2":
+        case "Estudiante":
             //2 Estudiante 80% descuento
             totalCost = buyAmount.value*40  // es lo que vale la entrada luego de hacer el descuento 
             break;
-        case "3":
+        case "Trainee":
             //3 Trainee 50% descuento
             totalCost = buyAmount.value*100  // es lo que vale la entrada luego de hacer el descuento
             break;
-        case "4":
+        case "Junior":
             //4 Junior 15% descuento
             totalCost = buyAmount.value*170  // es lo que vale la entrada luego de hacer el descuento
             break;
@@ -101,7 +101,22 @@ const mostrarTotal = () => {
           //Declaraciones ejecutadas cuando ninguno de los valores coincide con el valor de la expresión
             break;
     }
-    boxTotal.innerHTML = `Precio total es ${totalCost}`;
+    boxTotal.innerHTML = `<table class="alert alert-info table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Cant.</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>${buyAmount.value}</th>
+                                <td><i class="bi bi-ticket-perforated"></i> Entradas ${buyCategory.value}</td>
+                                <td>$ ${totalCost}</td>
+                            </tbody>
+                        </table>
+                        `;
     totalCost = 0;  //reseteamos el costo total para que no influya en una nueva compra
 }
 
@@ -111,6 +126,13 @@ const resetCampos = () => {
     campos.apellido = false;
     campos.correo = false;
     campos.cantidad = false;
+}
+
+// FUNCION PARA RESETEAR LOS MENSAJES DE ERROR
+const resetMensajes = () => {
+    document.querySelectorAll(".msjError").forEach((icono)=>{
+        icono.classList.add("d-none");
+    });
 }
 
 // FUNCION PARA EL BOTON COMPRAR
@@ -133,6 +155,9 @@ btnComprar.addEventListener("click", function(e){
             icono.classList.remove("is-valid");
         });
 
+        // VACIO LA CAJA DONDE SE MUESTRA EL TOTAL Y LA DESCRIPCION DE LA COMPRA
+        boxTotal.innerHTML = "";
+
         // RESETEO TODOS LOS CAMPOS PARA QUE NO SE PUEDAN SEGUIR ENVIANDO PETICIONES LUEGO DE ENVIAR UNA Y TODOS LOS CAMPOS SEAN VALIDOS
         resetCampos();
     } else {
@@ -147,6 +172,7 @@ btnComprar.addEventListener("click", function(e){
 
 btnBorrar.addEventListener("click", function(e){
     e.preventDefault();
+    formulario.reset();
 
     // DESACTIVO TODOS LOS ICONOS DE LAS VALIDACIONES
     document.querySelectorAll(".is-valid").forEach((icono)=>{
@@ -155,4 +181,10 @@ btnBorrar.addEventListener("click", function(e){
     document.querySelectorAll(".is-invalid").forEach((icono)=>{
         icono.classList.remove("is-invalid");
     });
+
+    // ELIMINO LOS MSJ DE VALIDACION SI QUEDO ALGUNO ACTIVO
+    resetMensajes();
+
+    // RESETEO LA CAJA DONDE MUESTRO EL TOTAL 
+    boxTotal.innerHTML = "";
 });
