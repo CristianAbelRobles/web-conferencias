@@ -9,6 +9,7 @@ let buyEmail = document.querySelector("#buy-email");
 let buyAmount = document.querySelector("#amount");
 let buyCategory = document.querySelector("#buy-category");
 let totalCost = 0;
+let spinner = document.getElementById("spinner");
 
 // EXPRESIONES REGULARES PARA VALIDAR LOS INPUTS
 const expresiones = {
@@ -138,12 +139,18 @@ const resetMensajes = () => {
 // FUNCION PARA EL BOTON COMPRAR
 btnComprar.addEventListener("click", function(e){
     e.preventDefault();
-
-    console.log(campos);
     
     if ( campos.nombre && campos.apellido && campos.correo && campos.cantidad ){
         formulario.reset();
-        document.getElementById("msj__box-valid").classList.remove("d-none");
+        
+        // MUESTRO SPINNER PARA SIMULAR PROCESOS DEL BACK
+        spinner.classList.remove("d-none");
+
+        setTimeout(() => {
+            // LUEGO DE 2 SEGUNDOS DESACTIVO EL SPINNER Y MUESTRO MSJ DE EXITO
+            spinner.classList.add("d-none");
+            document.getElementById("msj__box-valid").classList.remove("d-none");
+        }, "2000");
 
         // LUEGO DE 5 SEGUNDOS QUITO EL MENSAJE DE COMPRA
         setTimeout(() => {
