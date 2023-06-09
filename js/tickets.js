@@ -11,6 +11,151 @@ let buyCategory = document.querySelector("#buy-category");
 let totalCost = 0;
 let spinner = document.getElementById("spinner");
 
+let ticketsCart = [
+    { categoria: "General", cantidad: 0, subTotal: 0 },
+    { categoria: "Estudiante", cantidad: 0, subTotal: 0 },
+    { categoria: "Trainee", cantidad: 0, subTotal: 0 },
+    { categoria: "Junior", cantidad: 0, subTotal: 0 }
+]
+
+let addTicket = document.getElementById("add-ticket");
+let objTickets = {};
+let listaCompras = JSON.parse(localStorage.getItem("listaCompras")) || [];
+
+const mostrarBoton = () => {
+    buyAmount.value >= 1 ?
+        addTicket.disabled = false 
+        :
+        addTicket.disabled = true 
+}
+
+const renderCart = () =>{
+
+    boxTotal.innerHTML = `<table class="alert alert-info table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Cant.</th>
+                            <th scope="col">Descripcion</th>
+                            
+                            <th scope="col" class="text-end">Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+
+                </table>
+                `
+    ;
+
+    ticketsCart.forEach(ticket => {
+        if ( ticket.cantidad > 0 ) {
+            document.getElementById("tableBody").innerHTML+= `
+                <tr>
+                    <th><!--  <button class="rounded-1 p-2 mb-1 text-bg-danger text-decoration-none" id=""><i class="bi bi-trash"></i>--></button></th>
+                    <td>${ticket.cantidad}</td>
+                    <td><i class="bi bi-ticket-perforated"></i> ${ticket.categoria}</td>
+                    <td class="text-end">SubTotal: $${ticket.subTotal}</td>
+                    
+                </tr>
+            `
+        } 
+    });
+
+    if (totalCost > 0) {
+        document.getElementById("tableBody").innerHTML+= `
+                <tr>
+                    
+                    <th class="text-end fs-5 fw-bold" colspan=4 >Total: $ ${totalCost}</th>
+                    
+                </tr>
+            `
+    }
+}
+
+const reservar = (e) => {
+    e.preventDefault();
+
+    switch (buyCategory.value) {
+        case "General":
+            ticketsCart[0].cantidad = ticketsCart[0].cantidad + parseInt(buyAmount.value); 
+            ticketsCart[0].subTotal = ticketsCart[0].subTotal + parseInt(buyAmount.value)*200;
+            break;
+        case "Estudiante":
+            ticketsCart[1].cantidad = ticketsCart[1].cantidad + parseInt(buyAmount.value);
+            ticketsCart[1].subTotal = ticketsCart[1].subTotal + parseInt(buyAmount.value)*40;
+            break;
+        case "Trainee":
+            ticketsCart[2].cantidad = ticketsCart[2].cantidad + parseInt(buyAmount.value);
+            ticketsCart[2].subTotal = ticketsCart[2].subTotal + parseInt(buyAmount.value)*100;
+            break;
+        case "Junior":
+            ticketsCart[3].cantidad = ticketsCart[3].cantidad + parseInt(buyAmount.value);
+            ticketsCart[3].subTotal = ticketsCart[3].subTotal + parseInt(buyAmount.value)*170;
+            break;
+    }
+
+    // ACTIVO EL BOTON COMPRAR
+    btnComprar.disabled = false ;
+
+    // DESACTIVO EL BOTON ADDTICKET
+    addTicket.disabled = true ;
+
+    // QUITO LA CLASE DE VALIDACION DEL INPUT CANTIDAD
+    buyAmount.classList.remove("is-valid");
+
+    // RESETEO EL VALOR DEL INPUT CANTIDAD
+    buyAmount.value = "";
+
+    // INICIO UN ACUMULADOR PARA SUMAR LOS SUBTOTALES
+    let acumulador = 0;
+
+    // SUMO LOS SUBTOTALES DE TODAS LAS CATEGORIAS
+    ticketsCart.forEach(element => {
+        acumulador = element.subTotal + acumulador;
+    });
+
+    // INTRODUZCO EN EL TOTAL TODOS LOS SUBTOTALES ACUMULADOS
+    totalCost = acumulador;
+
+    renderCart();
+
+}
+
+// FUNCION PARA QUE NO DEJE INGRESAR MAS DE 10 TICKETS EN LA CANTIDAD DE ENTRADAS A COMPRAR
+const controlarCantidad = () => {
+    if (buyAmount.value > 10 || buyAmount.value < 0 ) {
+        buyAmount.value = "";
+    }
+}
+
+// LISTENER PARA MONITOREAR CUANDO EL USUARIO INGRESA UNA CANTIDAD INVALIDA DE TICKETS
+buyAmount.addEventListener("keyup", controlarCantidad)
+
+buyAmount.addEventListener("change", mostrarBoton);
+
+addTicket.addEventListener("click", reservar);
+
+class Compra{
+    constructor(nombre, apellido, correo, tickets){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.tickets = tickets;
+    }
+}
+
+const guardarCompra = () => {
+        let nombre = document.querySelector("#nombre").value;
+        let apellido = document.querySelector("#apellido").value;
+        let correo = document.querySelector("#correo").value;
+        let tickets = objTickets;
+        let compraNueva = new Compra (nombre, apellido, correo, tickets );
+        listaCompras.push(compraNueva);
+        localStorage.setItem("listaCompras", JSON.stringify(listaCompras));
+        console.log(listaCompras)
+}
+
 // EXPRESIONES REGULARES PARA VALIDAR LOS INPUTS
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -39,7 +184,7 @@ const validarFormulario = (e) => {
         break;
         case "buy-amount":
             validarCantidad();
-            mostrarTotal();
+            mostrarBoton();
         break;
     }
 }
@@ -63,8 +208,6 @@ inputs.forEach((input) => {
 	input.addEventListener('blur', validarFormulario); // EVENTO QUE SE EJECUTA CUANDO HAGO CLICK FUERA DEL INPUT
 });
 
-
-
 // FUNCION PARA VALIDAR EL INPUT DE CANTIDAD
 const validarCantidad = () =>  {
     if (buyAmount.value >= 1) {
@@ -78,47 +221,6 @@ const validarCantidad = () =>  {
         document.querySelector("#grupo__amount .msjError").classList.remove("d-none");
         campos["cantidad"] = false;
     }
-}
-
-const mostrarTotal = () => {
-    switch (buyCategory.value) {
-        case "General":
-            //general 200 sin descuento
-            totalCost = buyAmount.value*200
-            break;
-        case "Estudiante":
-            //2 Estudiante 80% descuento
-            totalCost = buyAmount.value*40  // es lo que vale la entrada luego de hacer el descuento 
-            break;
-        case "Trainee":
-            //3 Trainee 50% descuento
-            totalCost = buyAmount.value*100  // es lo que vale la entrada luego de hacer el descuento
-            break;
-        case "Junior":
-            //4 Junior 15% descuento
-            totalCost = buyAmount.value*170  // es lo que vale la entrada luego de hacer el descuento
-            break;
-        default:
-          //Declaraciones ejecutadas cuando ninguno de los valores coincide con el valor de la expresión
-            break;
-    }
-    boxTotal.innerHTML = `<table class="alert alert-info table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Cant.</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>${buyAmount.value}</th>
-                                <td><i class="bi bi-ticket-perforated"></i> Entradas ${buyCategory.value}</td>
-                                <td>$ ${totalCost}</td>
-                            </tbody>
-                        </table>
-                        `;
-    totalCost = 0;  //reseteamos el costo total para que no influya en una nueva compra
 }
 
 // FUNCION PARA RESETEAR LOS CAMPOS LUEGO DE HACER UNA RESERVA
@@ -141,7 +243,13 @@ btnComprar.addEventListener("click", function(e){
     e.preventDefault();
     
     if ( campos.nombre && campos.apellido && campos.correo && campos.cantidad ){
+        // GUARDAMOS LOS DATOS DE LA COMPRA EN NUESTRO ARRAY
+        guardarCompra();
+
+        // RESETEAMOS LOS CAMPOS DEL FORMULARIO
         formulario.reset();
+
+        addTicket.disabled = true ;
         
         // MUESTRO SPINNER PARA SIMULAR PROCESOS DEL BACK
         spinner.classList.remove("d-none");
