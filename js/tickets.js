@@ -29,22 +29,22 @@ const mostrarBoton = () => {
         addTicket.disabled = true 
 }
 
+// FUNCION PARA MOSTRAR EL CARRITO CON LOS TICKETS PREVIOS A LA COMPRA
 const renderCart = () =>{
 
-    boxTotal.innerHTML = `<table class="alert alert-info table">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Cant.</th>
-                            <th scope="col">Descripcion</th>
-                            
-                            <th scope="col" class="text-end">Costo</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                    </tbody>
-
-                </table>
+    boxTotal.innerHTML = `<table class="alert alert-info table table align-middle table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Accion</th>
+                                    <th scope="col">Cant.</th>
+                                    <th scope="col">Descripcion</th>
+                                    
+                                    <th scope="col" class="text-end">Costo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
                 `
     ;
 
@@ -52,25 +52,74 @@ const renderCart = () =>{
         if ( ticket.cantidad > 0 ) {
             document.getElementById("tableBody").innerHTML+= `
                 <tr>
-                    <th><!--  <button class="rounded-1 p-2 mb-1 text-bg-danger text-decoration-none" id=""><i class="bi bi-trash"></i>--></button></th>
+                    <td>
+                        <button class="rounded-1 p-2 mb-1 text-bg-danger text-decoration-none delTicket">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </td>
                     <td>${ticket.cantidad}</td>
-                    <td><i class="bi bi-ticket-perforated"></i> ${ticket.categoria}</td>
+                    <td>
+                        <i class="bi bi-ticket-perforated"></i> 
+                        <span class="removeId">${ticket.categoria}</span>
+                    </td>
                     <td class="text-end">SubTotal: $${ticket.subTotal}</td>
-                    
                 </tr>
             `
+            
         } 
     });
 
     if (totalCost > 0) {
         document.getElementById("tableBody").innerHTML+= `
                 <tr>
-                    
                     <th class="text-end fs-5 fw-bold" colspan=4 >Total: $ ${totalCost}</th>
-                    
                 </tr>
             `
     }
+    // LE APLICO UN LISTENER A TODOS LOS BOTONES ELIMINAR
+    let botonesEliminar = document.querySelectorAll(".delTicket");
+    botonesEliminar.forEach((boton) => {
+        boton.addEventListener('click', deleteTickets);
+    });
+    
+}
+
+function deleteTickets(e){
+    e.preventDefault();
+    console.log(e.target.closest("tr").children[2].lastElementChild.innerHTML);
+    let removeCategoria = e.target.closest("tr").children[2].lastElementChild.innerHTML;
+
+    switch (removeCategoria) {
+        case "General":
+            totalCost = totalCost - parseInt(ticketsCart[0].subTotal);
+            ticketsCart[0].cantidad = 0; 
+            ticketsCart[0].subTotal = 0;
+            break;
+        case "Estudiante":
+            totalCost = totalCost - parseInt(ticketsCart[1].subTotal);
+            ticketsCart[1].cantidad = 0;
+            ticketsCart[1].subTotal = 0;
+            break;
+        case "Trainee":
+            totalCost = totalCost - parseInt(ticketsCart[2].subTotal);
+            ticketsCart[2].cantidad = 0;
+            ticketsCart[2].subTotal = 0;
+            break;
+        case "Junior":
+            totalCost = totalCost - parseInt(ticketsCart[3].subTotal);
+            ticketsCart[3].cantidad = 0;
+            ticketsCart[3].subTotal = 0;
+            break;
+    }
+    console.log(ticketsCart);
+
+    renderCart();
+    activarBtnComprar();
+
+    if (totalCost == 0) {
+        boxTotal.innerHTML = ``
+    }
+    
 }
 
 const reservar = (e) => {
@@ -95,9 +144,6 @@ const reservar = (e) => {
             break;
     }
 
-    // ACTIVO EL BOTON COMPRAR
-    btnComprar.disabled = false ;
-
     // DESACTIVO EL BOTON ADDTICKET
     addTicket.disabled = true ;
 
@@ -120,12 +166,24 @@ const reservar = (e) => {
 
     renderCart();
 
+    activarBtnComprar();
+
 }
 
 // FUNCION PARA QUE NO DEJE INGRESAR MAS DE 10 TICKETS EN LA CANTIDAD DE ENTRADAS A COMPRAR
 const controlarCantidad = () => {
     if (buyAmount.value > 10 || buyAmount.value < 0 ) {
         buyAmount.value = "";
+    }
+}
+
+// FUNCION PARA ACTIVAR BOTON COMPRAR
+const activarBtnComprar = () => {
+    // SI LOS INPUTS SON VALIDOS Y SE CARGARON TICKETS AL CARRITO ACTIVO EL BOTON COMPRAR
+    if (( campos.nombre && campos.apellido && campos.correo ) && (totalCost > 0)) {
+        btnComprar.disabled = false ;
+    } else {
+        btnComprar.disabled = true ;
     }
 }
 
@@ -145,6 +203,7 @@ class Compra{
     }
 }
 
+// GUARDO LA COMPRA EN EL LOCALSTORAGE
 const guardarCompra = () => {
         let nombre = document.querySelector("#nombre").value;
         let apellido = document.querySelector("#apellido").value;
@@ -153,7 +212,6 @@ const guardarCompra = () => {
         let compraNueva = new Compra (nombre, apellido, correo, tickets );
         listaCompras.push(compraNueva);
         localStorage.setItem("listaCompras", JSON.stringify(listaCompras));
-        console.log(listaCompras)
 }
 
 // EXPRESIONES REGULARES PARA VALIDAR LOS INPUTS
@@ -172,6 +230,9 @@ const campos = {
 
 // VALIDAMOS LOS INPUTS
 const validarFormulario = (e) => {
+
+    activarBtnComprar();
+
     switch (e.target.name){
         case "buy-name":
             validarCampo(expresiones.nombre, e.target, "nombre");
@@ -210,16 +271,16 @@ inputs.forEach((input) => {
 
 // FUNCION PARA VALIDAR EL INPUT DE CANTIDAD
 const validarCantidad = () =>  {
-    if (buyAmount.value >= 1) {
-        buyAmount.classList.add("is-valid");
-        buyAmount.classList.remove("is-invalid");
-        document.querySelector("#grupo__amount .msjError").classList.add("d-none");
-        campos["cantidad"] = true;
-    } else {
-        buyAmount.classList.add("is-invalid");
-        buyAmount.classList.remove("is-valid");
-        document.querySelector("#grupo__amount .msjError").classList.remove("d-none");
-        campos["cantidad"] = false;
+    if (totalCost == 0 ){
+        if (buyAmount.value >= 1) {
+            buyAmount.classList.add("is-valid");
+            buyAmount.classList.remove("is-invalid");
+            document.querySelector("#grupo__amount .msjError").classList.add("d-none");
+        } else {
+            buyAmount.classList.add("is-invalid");
+            buyAmount.classList.remove("is-valid");
+            document.querySelector("#grupo__amount .msjError").classList.remove("d-none");
+        }
     }
 }
 
@@ -238,11 +299,19 @@ const resetMensajes = () => {
     });
 }
 
+// RESETEO LOS TICKETS DEL CARRITO
+const resetCart = () => {
+    ticketsCart.forEach((categoria)=>{
+        categoria.subTotal = 0;
+        categoria.cantidad = 0;
+    });
+}
+
 // FUNCION PARA EL BOTON COMPRAR
 btnComprar.addEventListener("click", function(e){
     e.preventDefault();
     
-    if ( campos.nombre && campos.apellido && campos.correo && campos.cantidad ){
+    if ( campos.nombre && campos.apellido && campos.correo ){
         // GUARDAMOS LOS DATOS DE LA COMPRA EN NUESTRO ARRAY
         guardarCompra();
 
@@ -275,6 +344,13 @@ btnComprar.addEventListener("click", function(e){
 
         // RESETEO TODOS LOS CAMPOS PARA QUE NO SE PUEDAN SEGUIR ENVIANDO PETICIONES LUEGO DE ENVIAR UNA Y TODOS LOS CAMPOS SEAN VALIDOS
         resetCampos();
+
+        // RESETEO EL CARRITO 
+        resetCart();
+
+        // DESACTIVO EL BOTON COMPRAR NUEVAMENTE
+        btnComprar.disabled = true;
+
     } else {
         document.getElementById("msj__box-error").classList.remove("d-none");
 
@@ -288,6 +364,12 @@ btnComprar.addEventListener("click", function(e){
 btnBorrar.addEventListener("click", function(e){
     e.preventDefault();
     formulario.reset();
+    activarBtnComprar();
+
+    resetCart();
+
+    // DESACTIVO EL BOTON COMPRAR NUEVAMENTE
+    btnComprar.disabled = true;
 
     // DESACTIVO TODOS LOS ICONOS DE LAS VALIDACIONES
     document.querySelectorAll(".is-valid").forEach((icono)=>{
