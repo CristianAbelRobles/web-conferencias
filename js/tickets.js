@@ -442,6 +442,9 @@ btnBorrar.addEventListener("click", function(e){
 
   resetCart();
 
+  // RESETEO LOS CAMPOS PARA QUE NO SE PUEDA COMPRAR CON LOS INPUTS VACIOS LUEGO DE BORRAR
+  resetCampos();
+
   // DESACTIVO EL BOTON COMPRAR NUEVAMENTE
   btnComprar.disabled = true;
 
